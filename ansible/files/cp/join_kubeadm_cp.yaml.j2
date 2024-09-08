@@ -1,0 +1,19 @@
+apiVersion: kubeadm.k8s.io/v1beta3
+caCertPath: /etc/kubernetes/pki/ca.crt
+controlPlane:
+  localAPIEndpoint:
+    advertiseAddress: {{ NODE_IP_1 }}
+    bindPort: 6443
+discovery:
+  bootstrapToken:
+    apiServerEndpoint: {{ KUBE_API_SERVER_VIP }}:8443
+    token: {{ KUBEADM_BOOTSTRAP_TOKEN }}
+    unsafeSkipCAVerification: true
+  tlsBootstrapToken: {{ KUBEADM_BOOTSTRAP_TOKEN }}
+kind: JoinConfiguration
+nodeRegistration:
+  criSocket: unix://{{ CRI_SOCKET_PATH }}
+  imagePullPolicy: IfNotPresent
+  taints:
+  - effect: NoSchedule
+    key: node-role.kubernetes.io/control-plane
