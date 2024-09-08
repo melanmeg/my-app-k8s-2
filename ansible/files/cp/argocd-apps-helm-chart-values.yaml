@@ -6,7 +6,7 @@ applications:
     namespace: argocd
     project: argocd-root
     source:
-      repoURL: https://github.com/melanmeg/profiling-Nah-tracing-Nah-Wing-it
+      repoURL: https://github.com/melanmeg/my-app-k8s-2
       targetRevision: main
       path: k8s-manifests/apps/root
     destination:
