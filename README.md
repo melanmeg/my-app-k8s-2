@@ -28,6 +28,7 @@
 
 ![画像2](./replace-worker.PNG)
 
+- メモ：init, join用YAMLは、apiVersionは同じだったためか、特に変更もなかった
 
 ### v1.28 → v1.29
 - ./v1-28-to-v1-29.md
