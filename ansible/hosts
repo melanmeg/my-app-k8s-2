@@ -9,5 +9,5 @@ k8s-cp-2 ansible_host=192.168.11.112
 k8s-wk-1 ansible_host=192.168.11.121
 
 [wk_backup]
-k8s-wk-2 ansible_host=192.168.11.122
-# k8s-wk-3 ansible_host=192.168.11.123
+# k8s-wk-2 ansible_host=192.168.11.122
+k8s-wk-3 ansible_host=192.168.11.123

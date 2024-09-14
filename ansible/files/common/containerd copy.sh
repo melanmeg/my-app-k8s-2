@@ -1,8 +1,6 @@
 #!/bin/bash
 set -eux
 
-# version: containerd://1.7.18
-
 # Add Docker's official GPG key:
 sudo apt-get update
 sudo apt-get install -y ca-certificates curl
