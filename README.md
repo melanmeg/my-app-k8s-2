@@ -22,7 +22,12 @@
 
 - OSとcontainrdのバージョンあげてノードを一新してから、k8sバージョンあげる
 
-![クラスタ参加](./wk3-join.PNG)
+![画像1](./wk3-join.PNG)
+
+- ここまできた
+
+![画像2](./replace-worker.PNG)
+
 
 ### v1.28 → v1.29
 - ./v1-28-to-v1-29.md

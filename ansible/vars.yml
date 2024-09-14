@@ -15,8 +15,11 @@ variables:
         # - cp/join.yml
     wk:
       tasks:
-        # - wk/ha-main.yml
-        # - wk/join.yml
+        - common/sysctl.yml
+        - common/nfs-client.yml
+        - common/k8s_1-28.yml
+        - wk/ha-main.yml
+        - wk/join_1-28.yml
     wk_backup:
       tasks:
         - common/sysctl.yml
