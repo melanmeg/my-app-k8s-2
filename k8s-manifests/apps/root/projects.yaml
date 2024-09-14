@@ -18,13 +18,9 @@ spec:
       server: https://kubernetes.default.svc
     - namespace: "logging"
       server: https://kubernetes.default.svc
-    - namespace: "tracing"
-      server: https://kubernetes.default.svc
     - namespace: "grafana"
       server: https://kubernetes.default.svc
     - namespace: "minio"
-      server: https://kubernetes.default.svc
-    - namespace: "pyroscope"
       server: https://kubernetes.default.svc
   clusterResourceWhitelist:
     - group: "*"
