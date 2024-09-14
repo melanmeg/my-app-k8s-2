@@ -12,6 +12,7 @@ lists = {
     'service49': [ 'postgres-operator-ui',  '192.168.11.149',  '80',    '30049' ],
     'service81': [ 'misskey-https',         '192.168.11.181',  '443',   '30081' ],
     'service82': [ 'misskey-http',          '192.168.11.182',  '80',    '30082' ],
+    'service84': [ 'misskey-3000',          '192.168.11.184',  '3000',  '30084' ],
 }
 
 # config gen haproxy
