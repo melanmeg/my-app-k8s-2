@@ -6,7 +6,7 @@
 
 - name: copy
   ansible.builtin.copy:
-    src: ./files/common/containerd_1-28.sh
+    src: ./files/common/containerd.sh
     dest: /tmp/containerd.sh
     mode: "0755"
 
