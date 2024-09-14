@@ -11,16 +11,16 @@ variables:
         - cp/setup.yml
     cp_join:
       tasks:
-        # - cp/ha-backend.yml
-        # - cp/join.yml
+        - cp/ha-backend.yml
+        - cp/join.yml
     wk:
       tasks:
         - wk/ha-main.yml
-        - wk/setup.yml
+        - wk/join.yml
     wk_backup:
       tasks:
         - wk/ha-backup.yml
-        - wk/setup.yml
+        - wk/join.yml
     cp_after:
       tasks:
         - cp/label-node.yml
