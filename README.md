@@ -22,13 +22,22 @@
 
 - OSとcontainrdのバージョンあげてノードを一新してから、k8sバージョンあげる
 
-![画像1](./wk3-join.PNG)
+![画像1](./img/wk3-join.PNG)
 
 - ここまできた
 
-![画像2](./replace-worker.PNG)
+![画像2](./img/replace-worker.PNG)
+
+![画像2](./img/cp-join.PNG)
 
 - メモ：init, join用YAMLは、apiVersionは同じだったためか、特に変更もなかった
+
+- メモ：cp1で`kubeadm config images pull`実行で`pause:3.9`警告でた。一応以下で解消できそう
+この修正をするとjoin上手くいった。
+```bash
+$ vim /etc/containerd/config.toml
+sandbox_image = "registry.k8s.io/pause:3.9"
+```
 
 ### v1.28 → v1.29
 - ./v1-28-to-v1-29.md
