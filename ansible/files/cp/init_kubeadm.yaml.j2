@@ -9,9 +9,6 @@ bootstrapTokens:
   - signing
   - authentication
 kind: InitConfiguration
-localAPIEndpoint:
-  advertiseAddress: {{ NODE_IP_1 }}
-  bindPort: 6443
 nodeRegistration:
   criSocket: unix://{{ CRI_SOCKET_PATH }}
   imagePullPolicy: IfNotPresent

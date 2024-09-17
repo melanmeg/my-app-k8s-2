@@ -7,8 +7,32 @@
     - ./vars.yml
   tasks:
     - include_tasks: "./tasks/{{ item }}"
-      with_items: "{{ variables.k8s.all.tasks }}"
-      when: variables.k8s.all.tasks
+      with_items: "{{ variables.all.tasks }}"
+      when: variables.all.tasks
+
+- name: lb
+  hosts: lb
+  remote_user: "{{ USER }}"
+  become: true
+  vars_files:
+    - ./env.yml
+    - ./vars.yml
+  tasks:
+    - include_tasks: "./tasks/{{ item }}"
+      with_items: "{{ variables.lb.tasks }}"
+      when: variables.lb.tasks
+
+- name: all-node
+  hosts: all_node
+  remote_user: "{{ USER }}"
+  become: true
+  vars_files:
+    - ./env.yml
+    - ./vars.yml
+  tasks:
+    - include_tasks: "./tasks/{{ item }}"
+      with_items: "{{ variables.k8s.all_node.tasks }}"
+      when: variables.k8s.all_node.tasks
 
 - name: cp
   hosts: cp
@@ -34,8 +58,8 @@
       with_items: "{{ variables.k8s.cp_join.tasks }}"
       when: variables.k8s.cp_join.tasks
 
-- name: wk-backup
-  hosts: wk_backup
+- name: worker
+  hosts: worker
   remote_user: "{{ USER }}"
   become: true
   vars_files:
@@ -43,20 +67,8 @@
     - ./vars.yml
   tasks:
     - include_tasks: "./tasks/{{ item }}"
-      with_items: "{{ variables.k8s.wk_backup.tasks }}"
-      when: variables.k8s.wk_backup.tasks
-
-- name: wk
-  hosts: wk
-  remote_user: "{{ USER }}"
-  become: true
-  vars_files:
-    - ./env.yml
-    - ./vars.yml
-  tasks:
-    - include_tasks: "./tasks/{{ item }}"
-      with_items: "{{ variables.k8s.wk.tasks }}"
-      when: variables.k8s.wk.tasks
+      with_items: "{{ variables.k8s.worker.tasks }}"
+      when: variables.k8s.worker.tasks
 
 - name: cp-after
   hosts: cp

@@ -2,9 +2,6 @@ apiVersion: kubeadm.k8s.io/v1beta3
 caCertPath: /etc/kubernetes/pki/ca.crt
 controlPlane:
   certificateKey: {{ KUBEADM_UPLOADED_CERTS }}
-  localAPIEndpoint:
-    advertiseAddress: {{ NODE_IP_2 }}
-    bindPort: 6443
 discovery:
   bootstrapToken:
     apiServerEndpoint: {{ KUBE_API_SERVER_VIP }}:8443
