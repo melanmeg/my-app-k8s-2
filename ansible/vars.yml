@@ -15,7 +15,7 @@ variables:
         - cp/setup.yml
     cp_join:
       tasks:
-        # - cp/join.yml
+        - cp/join.yml
     worker:
       tasks:
         - wk/join.yml
@@ -25,3 +25,4 @@ variables:
         - cp/cilium.yml
         - cp/argocd.yml
         - cp/postgres-operator.yml
+        - cp/role.yml

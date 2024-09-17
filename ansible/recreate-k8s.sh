@@ -7,7 +7,7 @@ log_and_execute() {
     local script="$2"
 
     echo "Start: $description"
-    ssh base2 "bash ~/kvm/$script"
+    ssh base1 "bash ~/kvm/$script"
     echo "Completed: $description"
     echo ""
 }
@@ -25,7 +25,7 @@ recreate_cluster() {
 
 run_ansible_playbook() {
     echo "Starting Running the ansible playbook."
-    ansible-playbook --key-file ~/.ssh/main -i hosts site.yml
+    ansible-playbook --key-file ~/.ssh/main -i inventory.yml site.yml
     echo "Completed Running the ansible playbook."
     echo ""
 }

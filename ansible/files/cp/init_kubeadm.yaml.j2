@@ -20,7 +20,7 @@ apiServer: {}
 apiVersion: kubeadm.k8s.io/v1beta3
 certificatesDir: /etc/kubernetes/pki
 clusterName: kubernetes
-controlPlaneEndpoint: {{ KUBE_API_SERVER_VIP }}:8443
+controlPlaneEndpoint: {{ KUBE_API_SERVER_VIP }}:6443
 controllerManager:
   extraArgs:
     bind-address: 0.0.0.0
