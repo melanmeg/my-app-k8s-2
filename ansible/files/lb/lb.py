@@ -1,13 +1,14 @@
 from jinja2 import Template
 
 lists = [
-    # service                  # nodeport
-    [ 'argocd',                '30041' ],
-    [ 'grafana',               '30042' ],
-    [ 'minio',                 '30044' ],
-    [ 'postgres-operator-ui',  '30049' ],
-    [ 'misskey-https',         '30081' ],
-    [ 'misskey-http',          '30082' ],
+    # service                  'port',  # nodeport
+    [ 'argocd',                '8081',  '30041' ],
+    [ 'grafana',               '8082',  '30042' ],
+    [ 'minio',                 '8083',  '30044' ],
+    [ 'postgres-operator-ui',  '8084',  '30049' ],
+    [ 'misskey-https',         '8085',  '30081' ],
+    [ 'misskey-http',          '8086',  '30082' ],
+    [ 'misskey-3000',          '3000',  '30084' ],
 ]
 
 
