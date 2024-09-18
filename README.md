@@ -2,3 +2,5 @@
 > 自宅サーバーkubernetesの第2版
 
 - kubernetesアップデートしたときの記録：`./k8sアップデートメモ.md`
+
+![画像1](./img/nodes.PNG)
