@@ -1,28 +1,28 @@
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: twicas-monitoring-shared-pv
-spec:
-  capacity:
-    storage: 50Gi
-  accessModes:
-    - ReadWriteMany
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: "nfs-share"
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: twicas-monitoring-shared-pvc
-  namespace: twicas-monitoring
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 50Gi
-  storageClassName: "nfs-share"
----
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: twicas-monitoring-shared-pv
+# spec:
+#   capacity:
+#     storage: 50Gi
+#   accessModes:
+#     - ReadWriteMany
+#   persistentVolumeReclaimPolicy: Retain
+#   storageClassName: "nfs-share"
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: twicas-monitoring-shared-pvc
+#   namespace: twicas-monitoring
+# spec:
+#   accessModes:
+#     - ReadWriteMany
+#   resources:
+#     requests:
+#       storage: 50Gi
+#   storageClassName: "nfs-share"
+# ---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -68,10 +68,15 @@ spec:
           volumeMounts:
             - name: twicas-monitoring-storage
               mountPath: /data
-      volumes:
-        - name: twicas-monitoring-storage
-          persistentVolumeClaim:
-            claimName: twicas-monitoring-shared-pvc
+  volumeClaimTemplates:
+    - metadata:
+        name: twicas-monitoring-storage
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 10Gi
+        storageClassName: "nfs-share"
 ---
 apiVersion: v1
 kind: Service
