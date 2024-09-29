@@ -49,10 +49,10 @@ spec:
     config:
     tls:
       http:
-        generate: true
+        generate: false
       transport:
-        generate: true
-        perNode: true
+        generate: false
+        perNode: false
   general:
     httpPort: 9200
     serviceName: opensearch-cluster-1
@@ -61,8 +61,8 @@ spec:
     drainDataNodes: true
   dashboards:
     tls:
-      enable: true
-      generate: true
+      enable: false
+      generate: false
     version: 2.3.0
     enable: true
     replicas: 1
