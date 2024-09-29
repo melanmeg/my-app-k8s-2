@@ -2,6 +2,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: twicas-monitoring-shared-pv
+  namespace: twicas-monitoring
 spec:
   capacity:
     storage: 50Gi
@@ -16,6 +17,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: twicas-monitoring-shared-pvc
+  namespace: twicas-monitoring
 spec:
   accessModes:
     - ReadWriteMany
