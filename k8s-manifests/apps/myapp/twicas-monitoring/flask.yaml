@@ -36,6 +36,9 @@ spec:
       containers:
         - name: twicas-flask-container
           image: melanmeg/twicas-flask:1.0.0
+          env:
+            - name: TOKEN
+              value: "dummy" # dummy
           ports:
             - containerPort: 5000
           resources:
