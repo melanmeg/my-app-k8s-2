@@ -45,6 +45,21 @@ spec:
       containers:
         - name: twicas-monitoring-container
           image: melanmeg/twicas-monitoring:1.0.0
+          env:
+            - name: OPENSEARCH_URL
+              value: "https://opensearch-cluster-1.opensearch:9200"
+            - name: OPENSEARCH_USER
+              value: admin
+            - name: OPENSEARCH_PASSWORD
+              value: admin
+            - name: USER_AGENT
+              value: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+            - name: DOWNLOAD_DIR
+              value: "downloads"
+            - name: PORT_NUM
+              value: "18080"
+            - name: LOG_DIR
+              value: "/tmp/logs"
           resources:
             limits:
               cpu: "2"
