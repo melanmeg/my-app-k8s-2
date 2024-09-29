@@ -34,14 +34,6 @@ metadata:
   name: opensearch-cluster-1
   namespace: opensearch
 spec:
-  security:
-    config:
-    tls:
-      http:
-        generate: false
-      transport:
-        generate: false
-        perNode: false
   general:
     httpPort: 9200
     serviceName: opensearch-cluster-1
@@ -49,9 +41,6 @@ spec:
     pluginsList: ["repository-s3"]
     drainDataNodes: true
   dashboards:
-    tls:
-      enable: false
-      generate: false
     version: 2.3.0
     enable: true
     replicas: 1
