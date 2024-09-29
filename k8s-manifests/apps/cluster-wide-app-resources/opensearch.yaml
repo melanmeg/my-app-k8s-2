@@ -26,7 +26,8 @@ spec:
       nodePort: 30086
       protocol: TCP
   selector:
-    opensearch.cluster.dashboards: opensearch-cluster-1
+    opster.io/opensearch-cluster: opensearch-cluster-1
+    opster.io/opensearch-nodepool: masters
 ---
 apiVersion: opensearch.opster.io/v1
 kind: OpenSearchCluster
