@@ -11,6 +11,7 @@ lists = [
     [ 'misskey-3000',          '3000',  '30084' ],
     [ 'opensearch-dashboard',  '8087',  '30085' ],
     [ 'opensearch',            '8088',  '30086' ],
+    [ 'twicas-monitoring',     '8089',  '30087' ],
 ]
 
 

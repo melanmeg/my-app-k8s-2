@@ -107,3 +107,43 @@ spec:
             duration: 5s
             factor: 2
             maxDuration: 2m
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: twicas-monitoring-apps
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/melanmeg/my-app-k8s-2
+        revision: main
+        directories:
+          - path: k8s-manifests/apps/myapp/twicas-monitoring
+  template:
+    metadata:
+      name: "{{path.basenameNormalized}}"
+      namespace: argocd
+    spec:
+      project: twicas-monitoring
+      source:
+        repoURL: https://github.com/melanmeg/my-app-k8s-2
+        targetRevision: main
+        path: "{{path}}"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: twicas-monitoring
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+          allowEmpty: true
+        syncOptions:
+          - CreateNamespace=true
+          - Replace=true
+        retry:
+          limit: -1
+          backoff:
+            duration: 5s
+            factor: 2
+            maxDuration: 2m

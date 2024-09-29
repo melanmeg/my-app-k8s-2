@@ -1,0 +1,77 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: twicas-monitoring-shared-pv
+spec:
+  capacity:
+    storage: 50Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: "nfs-share"
+  hostPath:
+    path: /mnt/data # クラスター内のノード上にある共有ディレクトリ
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: twicas-monitoring-shared-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 50Gi
+  storageClassName: "nfs-share"
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: twicas-monitoring-deployment
+  namespace: twicas-monitoring
+  labels:
+    app: twicas-monitoring
+spec:
+  serviceName: "twicas-monitoring"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: twicas-monitoring
+  template:
+    metadata:
+      labels:
+        app: twicas-monitoring
+    spec:
+      containers:
+        - name: twicas-monitoring-container
+          image: melanmeg/twicas-monitoring:1.0.0
+          resources:
+            limits:
+              cpu: "2"
+              memory: "4Gi"
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: twicas-monitoring-storage
+              mountPath: /data
+      volumes:
+        - name: twicas-monitoring-storage
+          persistentVolumeClaim:
+            claimName: twicas-monitoring-shared-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: twicas-monitoring-service
+  labels:
+    app: twicas-monitoring
+spec:
+  type: NodePort
+  ports:
+    - name: app
+      port: 18080
+      targetPort: 18080
+      nodePort: 30087
+      protocol: TCP
+  selector:
+    app: twicas-monitoring

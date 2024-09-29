@@ -52,7 +52,7 @@ spec:
   nodePools:
     - component: masters
       replicas: 3
-      diskSize: "80Gi"
+      diskSize: "60Gi"
       resources:
         requests:
           memory: "4Gi"

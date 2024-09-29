@@ -45,3 +45,21 @@ spec:
   clusterResourceWhitelist:
     - group: "*"
       kind: "*"
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: twicas-monitoring
+  namespace: argocd
+spec:
+  description: twicas-monitoring yeahyeah
+  sourceRepos:
+    - "*"
+  destinations:
+    - namespace: twicas-monitoring
+      server: https://kubernetes.default.svc
+    - namespace: argocd
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
