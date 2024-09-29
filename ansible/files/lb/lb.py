@@ -9,6 +9,7 @@ lists = [
     [ 'misskey-https',         '8085',  '30081' ],
     [ 'misskey-http',          '8086',  '30082' ],
     [ 'misskey-3000',          '3000',  '30084' ],
+    [ 'opensearch',            '8087',  '30085' ],
 ]
 
 
