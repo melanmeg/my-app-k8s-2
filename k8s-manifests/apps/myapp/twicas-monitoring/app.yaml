@@ -86,6 +86,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: twicas-monitoring-service
+  namespace: twicas-monitoring
   labels:
     app: twicas-monitoring
 spec:

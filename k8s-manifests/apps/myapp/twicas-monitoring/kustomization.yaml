@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: twicas-monitoring
 resources:
   - app.yaml
+  - flask.yaml

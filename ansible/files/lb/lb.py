@@ -12,6 +12,7 @@ lists = [
     [ 'opensearch-dashboard',  '8087',  '30085' ],
     [ 'opensearch',            '8088',  '30086' ],
     [ 'twicas-monitoring',     '8089',  '30087' ],
+    [ 'twicas-flask',          '8090',  '30088' ],
 ]
 
 
