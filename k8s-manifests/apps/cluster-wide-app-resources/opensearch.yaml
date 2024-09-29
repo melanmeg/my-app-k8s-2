@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: opensearch-dashboard-lb
   namespace: opensearch
+labels:
+  opensearch.cluster.dashboards: opensearch-cluster-1
 spec:
   type: NodePort
   ports:
@@ -18,6 +20,8 @@ kind: Service
 metadata:
   name: opensearch-lb
   namespace: opensearch
+labels:
+  opster.io/opensearch-cluster: opensearch-cluster-1
 spec:
   type: NodePort
   ports:
@@ -27,7 +31,6 @@ spec:
       protocol: TCP
   selector:
     opster.io/opensearch-cluster: opensearch-cluster-1
-    opster.io/opensearch-nodepool: masters
 ---
 apiVersion: opensearch.opster.io/v1
 kind: OpenSearchCluster
