@@ -38,8 +38,6 @@ spec:
     httpPort: 9200
     serviceName: opensearch-cluster-1
     version: 2.3.0
-    pluginsList: ["repository-s3"]
-    drainDataNodes: true
   dashboards:
     version: 2.3.0
     enable: true
