@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: opensearch-lb
+  name: opensearch-dashboard-lb
   namespace: opensearch
 spec:
   type: NodePort
@@ -9,6 +9,21 @@ spec:
     - port: 5601
       targetPort: 5601
       nodePort: 30085
+      protocol: TCP
+  selector:
+    opensearch.cluster.dashboards: opensearch-cluster-1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: opensearch-lb
+  namespace: opensearch
+spec:
+  type: NodePort
+  ports:
+    - port: 9200
+      targetPort: 9200
+      nodePort: 30086
       protocol: TCP
   selector:
     opensearch.cluster.dashboards: opensearch-cluster-1
@@ -50,6 +65,7 @@ spec:
   nodePools:
     - component: masters
       replicas: 3
+      diskSize: "80Gi"
       resources:
         requests:
           memory: "4Gi"
@@ -61,12 +77,10 @@ spec:
         - "data"
         - "cluster_manager"
       persistence:
-        storageClassName: "nfs-share"
-        accessModes:
-          - ReadWriteOnce
-        resources:
-          requests:
-            storage: 80Gi
+        pvc:
+          accessModes:
+            - ReadWriteOnce
+          storageClass: "nfs-share"
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
