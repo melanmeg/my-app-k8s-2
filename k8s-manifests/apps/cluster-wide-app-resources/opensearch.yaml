@@ -1,3 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: opensearch-operaotr
+  namespace: opensearch
+spec:
+  project: cluster-wide-apps
+  source:
+    chart: opensearch-operaotr
+    repoURL: https://opensearch-project.github.io/opensearch-k8s-operator
+    targetRevision: 2.6.1
+    helm:
+      releaseName: opensearch-operaotr
+      values: |
+        securityContext:
+          runAsNonRoot: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: opensearch
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -67,29 +93,3 @@ spec:
         resources:
           requests:
             storage: 80Gi
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: opensearch-operaotr
-  namespace: opensearch
-spec:
-  project: cluster-wide-apps
-  source:
-    chart: opensearch-operaotr
-    repoURL: https://opensearch-project.github.io/opensearch-k8s-operator
-    targetRevision: 2.6.1
-    helm:
-      releaseName: opensearch-operaotr
-      values: |
-        securityContext:
-          runAsNonRoot: true
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: opensearch
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
