@@ -64,24 +64,12 @@
 - テスト
 
 ```bash
-curl -X GET "http://opensearch-cluster-1-masters.opensearch:9200/opensearch_dashboards_sample_data_logs/_count" \
--H 'Content-Type: application/json' \
--d '{
-  "query": {
-    "term": {
-      "response": "200"
-    }
-  }
-}'
+curl -k -u admin:admin https://192.168.11.100:8088
+curl -k -u admin:admin https://opensearch-cluster-1.opensearch:9200
 
-curl \
-   -u "admin:admin" \
+curl -k -u "admin:admin" \
    -H "content-type: application/json" \
-   -X GET "$ENDPOINT/test-index-202212"
-
-curl -u "admin:admin" \
-   -H "content-type: application/json" \
-   -X PUT "http://opensearch-cluster-1.opensearch:9200/test-index-202212/" \
+   -X PUT "https://192.168.11.100:8088/test-index/" \
    -d '
 {
  "mappings": {
@@ -95,10 +83,14 @@ curl -u "admin:admin" \
    }
  }
 }'
+
+curl -k -u "admin:admin" \
+   -H "content-type: application/json" \
+   -X GET "https://192.168.11.100:8088/test-index"
 ```
 
 ```bash
-curl -X POST "http://192.168.11.100:8088/logs/_doc" -H 'Content-Type: application/json' -d '{
+curl  -k -u admin:admin -X POST "https://192.168.11.100:8088/test-logs/_doc" -H 'Content-Type: application/json' -d '{
   "timestamp": "2024-09-29T10:00:00Z",
   "level": "INFO",
   "message": "This is a sample log message",
